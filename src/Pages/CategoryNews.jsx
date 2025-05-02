@@ -9,6 +9,7 @@ const CategoryNews = () => {
     // console.log(id ,data);
 
     const [categoryNews,setCategoryNews]=useState([]);
+    const [showAll,setShowAll]=useState(false);
 
     useEffect(()=>{
         if(id == "0"){
@@ -27,17 +28,38 @@ const CategoryNews = () => {
         
     },[data,id])
 
+    useEffect(() => {
+        if (!showAll) {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, [showAll]);
+
+    // Show All Button to Show All news 
+    const displayedNews = showAll
+    ? categoryNews
+    : categoryNews.slice(0, 4);
+
+    
     return (
         <div>
-             <h2 className='font-semibold text-xl'>Dragon News Home --{categoryNews.length}</h2>
+             <h2 className='font-semibold text-xl'>Dragon News Home --{displayedNews.length}</h2>
             <div className='grid grid-cols-1 gap-5'>
                 {
-                    categoryNews.map(news=><NewsCard
+                    displayedNews.map(news=><NewsCard
                     key={news.id}
                     news={news}
                     ></NewsCard>)
                 }
             </div>
+            {categoryNews.length > 4 && (
+        <button
+          onClick={() => setShowAll(prev => !prev)}
+          
+          className='btn btn-ghost mx-auto w-28 mt-4'
+        >
+          {showAll ? 'Show Less' : 'Show All'}
+        </button>
+      )}
         </div>
     );
 };
