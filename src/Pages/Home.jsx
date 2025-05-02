@@ -3,7 +3,7 @@ import React from 'react';
 const Home = () => {
     return (
         <div>
-            HOme page
+            <h2 className='font-semibold text-xl'>Dragon News Home</h2>
         </div>
     );
 };

@@ -15,7 +15,7 @@ const HomeLayouts = () => {
             <section className='w-11/12 mx-auto my-3'>
                 <LatestNews></LatestNews>
             </section>
-            <nav className='w-11/12 mx-auto my-4'>
+            <nav className='w-11/12 mx-auto my-4 '>
                 <Navbar></Navbar>
             </nav>
             
@@ -23,7 +23,7 @@ const HomeLayouts = () => {
                 <aside className='col-span-3'>
                     <LeftAside></LeftAside>
                 </aside>
-                <section className='main col-span-6'>
+                <section className='main col-span-6 mx-4'>
 
                     <Outlet></Outlet>
 
