@@ -2,12 +2,17 @@ import { createBrowserRouter } from "react-router";
 import HomeLayouts from "../Layouts/HomeLayouts";
 import Home from "../Pages/Home";
 import CategoryNews from "../Pages/CategoryNews";
+import ErrorPage from "../Pages/ErrorPage";
+import AuthLayout from "../Layouts/AuthLayout";
+import Login from "../Pages/Login";
+import Register from "../Pages/Register";
 
 const router= createBrowserRouter(
     [
         {
             path:'/',
             Component:HomeLayouts,
+            errorElement:<ErrorPage></ErrorPage>,
             children:[
                 {
                     path:"/",
@@ -17,9 +22,27 @@ const router= createBrowserRouter(
                     path:"/category/:id",
                     Component:CategoryNews,
                     loader:()=>fetch("/news.json")
+                },
+                
+            ]
+        },
+        {
+            path:"/auth",
+            Component:AuthLayout,
+            children:[
+                {
+                    path:"/auth/login",
+                    Component:Login
+
+                },
+                {
+                    path:"/auth/register",
+                    Component:Register
+
                 }
             ]
         }
+
 ])
 
 export default router;
