@@ -39,7 +39,7 @@ const CategoryNews = () => {
     ? categoryNews
     : categoryNews.slice(0, 4);
 
-    
+
     return (
         <div>
              <h2 className='font-semibold text-xl'>Dragon News Home --{displayedNews.length}</h2>
@@ -55,7 +55,7 @@ const CategoryNews = () => {
         <button
           onClick={() => setShowAll(prev => !prev)}
           
-          className='btn btn-ghost mx-auto w-28 mt-4'
+          className='btn  mx-auto w-36 flex justify-center mt-2'
         >
           {showAll ? 'Show Less' : 'Show All'}
         </button>
