@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { use } from 'react';
 import { Link } from 'react-router';
+import { AuthContext } from '../Provider/AuthContext';
 
 const Register = () => {
-
+  const {createUser}=use(AuthContext)
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -11,6 +12,18 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value
     console.log(name, photo, email, password);
+
+    // create user
+    createUser(email,password)
+    .then(result=>{
+      console.log(result.user);
+    })
+    .catch((error) => {
+      
+      const errorMessage = error.message;
+      alert(errorMessage)
+    });
+  
   }
   return (
     <div className='flex justify-center min-h-screen items-center'>
@@ -30,7 +43,7 @@ const Register = () => {
             {/* photo url */}
             <label className="label">Photo URL</label>
             <input type="text" name='photo' className="input" placeholder="Photo URL" required/>
-
+ 
             {/* email */}
             <label className="label">Email</label>
             <input type="email" name='email' className="input" placeholder="Email" required/> 

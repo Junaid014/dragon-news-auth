@@ -9,6 +9,7 @@ import RightAside from '../Components/homelayout/RightAside';
 const HomeLayouts = () => {
     return (
         <div>
+           
             <header>
                 <Header></Header>
             </header>
