@@ -7,6 +7,7 @@ import AuthLayout from "../Layouts/AuthLayout";
 import Login from "../Pages/Login";
 import Register from "../Pages/Register";
 import NewsDetails from "../Pages/NewsDetails";
+import PrivetRoute from "../Provider/PrivetRoute";
 
 const router= createBrowserRouter(
     [
@@ -45,7 +46,9 @@ const router= createBrowserRouter(
         },
         {
             path:'/news-details/:id',
-            Component:NewsDetails,
+            element:<PrivetRoute>
+                <NewsDetails></NewsDetails>
+            </PrivetRoute>,
             loader:()=>fetch('/news.json')
         }
 

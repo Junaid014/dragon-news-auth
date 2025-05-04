@@ -9,12 +9,15 @@ import { app } from '../firebase/firebase.init';
 const AuthProvider = ({children}) => {
 
     const [user,setUser]=useState(null);
+    const [loading,setLoading]=useState(true);
 
     const createUser=(email,password)=>{
+        setLoading(true);
         return createUserWithEmailAndPassword(auth,email,password)
     }
 
     const LoginUser=(email,password)=>{
+        setLoading(true);
         return signInWithEmailAndPassword(auth,email,password)
     }
 
@@ -25,7 +28,8 @@ const AuthProvider = ({children}) => {
     // check whether the user is there or not by unsubscribe
     useEffect(()=>{
         const unSubscribe=onAuthStateChanged(auth, currentUser=>{
-            setUser(currentUser)
+            setUser(currentUser);
+            setLoading(false)
            
         })
         return()=>{
@@ -38,7 +42,9 @@ const AuthProvider = ({children}) => {
         user,
         createUser,
         LoginUser,
-        signOutUser
+        signOutUser,
+        loading,
+        setLoading
     }
 
 
